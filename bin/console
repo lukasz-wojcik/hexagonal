@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+rack_env="${RACK_ENV:-development}"
+export "RACK_ENV=${rack_env}"
+
+bundle exec pry -I . -r 'config/boot'
