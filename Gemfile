@@ -11,4 +11,5 @@ gem "zeitwerk"
 
 group :development, :test do
   gem "pry"
+  gem "rspec", "~> 3.10.0"
 end
