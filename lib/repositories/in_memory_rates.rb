@@ -1,19 +1,21 @@
-module Adapters
+module Repositories
   class InMemoryRates
     def initialize(rates: nil)
-      @rates = rates || default_rates
+      self.rates = rates || default_rates
     end
 
     def add_rate(rate)
       raise 'Invalid rate' unless rate.is_a?(ParkingCars::Entities::Rate)
-      @rates << rate
+      rates << rate
     end
 
     def get_all_rates
-      @rates
+      rates
     end
 
     private
+
+    attr_accessor :rates
 
     def default_rates
       [
