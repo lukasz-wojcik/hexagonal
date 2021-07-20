@@ -1,7 +1,7 @@
 module Repositories
   class InMemoryRates
-    def initialize(rates: nil)
-      self.rates = rates || default_rates
+    def initialize(rates: [])
+      self.rates = rates
     end
 
     def add_rate(rate)
@@ -16,11 +16,5 @@ module Repositories
     private
 
     attr_accessor :rates
-
-    def default_rates
-      [
-        ParkingCars::Entities::Rate.new(name: 'Zone 1', min_minutes_allowed: 10, max_minutes_allowed: 180, cost_per_hour: 5)
-      ]
-    end
   end
 end

@@ -3,16 +3,17 @@ require 'csv'
 module Repositories
   class FileDbRates
     def initialize(file_path)
-      self.rates = load_rates_file(file_path)
+      self.file_path = file_path
+
     end
 
     def get_all_rates
-      rates
+      @rates ||= load_rates_file(file_path)
     end
 
     private
 
-    attr_accessor :rates
+    attr_accessor :file_path
 
     def load_rates_file(file_path)
       [].tap do |entries|
