@@ -3,6 +3,7 @@ require 'dry-container'
 class ApplicationConfig
   extend Dry::Container::Mixin
   OBTAINING_RATES_PREFIX = 'obtaining_rates_'
+  PERMITS_REPOSITORY_PREFIX = 'permits_repository_'
 
   def self.register_obtaining_rates_repository(key: 'default', repository:)
     register("#{OBTAINING_RATES_PREFIX}#{key}", repository)
@@ -11,6 +12,15 @@ class ApplicationConfig
   def self.obtaining_rates_repository(key: 'default')
     resolve("#{OBTAINING_RATES_PREFIX}#{key}",)
   end
+
+  def self.register_permits_repository(key: 'default', repository:)
+    register("#{PERMITS_REPOSITORY_PREFIX}#{key}", repository)
+  end
+
+  def self.permits_repository(key: 'default')
+    resolve("#{PERMITS_REPOSITORY_PREFIX}#{key}")
+  end
+
 end
 
 rates_file_db_path = File.expand_path(File.join(Dir.pwd, 'config/rates.yml'))
