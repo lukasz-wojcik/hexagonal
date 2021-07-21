@@ -4,6 +4,7 @@ class ApplicationConfig
   extend Dry::Container::Mixin
   OBTAINING_RATES_PREFIX = 'obtaining_rates_'
   PERMITS_REPOSITORY_PREFIX = 'permits_repository_'
+  PAYMENT_SERVICE_PREFIX = 'payment_service_'
 
   def self.register_obtaining_rates_repository(key: 'default', repository:)
     register("#{OBTAINING_RATES_PREFIX}#{key}", repository)
@@ -21,6 +22,13 @@ class ApplicationConfig
     resolve("#{PERMITS_REPOSITORY_PREFIX}#{key}")
   end
 
+  def self.register_payment_service(key: 'default', service:)
+    register("#{PAYMENT_SERVICE_PREFIX}#{key}", service)
+  end
+
+  def self.payment_service(key: 'default')
+    resolve("#{PAYMENT_SERVICE_PREFIX}#{key}")
+  end
 end
 
 rates_file_db_path = File.expand_path(File.join(Dir.pwd, 'config/rates.yml'))
