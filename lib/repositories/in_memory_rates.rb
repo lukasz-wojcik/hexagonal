@@ -19,6 +19,10 @@ module Repositories
       rate
     end
 
+    def destroy_all
+      self.rates = []
+    end
+
     private
 
     attr_accessor :rates

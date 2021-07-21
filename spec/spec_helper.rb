@@ -11,4 +11,8 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  config.after(:example) do
+    ApplicationConfig.obtaining_rates_repository(key: 'in_memory').destroy_all
+  end
 end
