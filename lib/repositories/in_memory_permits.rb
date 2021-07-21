@@ -4,13 +4,13 @@ module Repositories
       self.db = {}
     end
 
-    def find_by_id(id)
-      db.fetch(id)
+    def find(code)
+      db.fetch(code)
     end
 
     def create(resource_attributes)
       resource = ParkingCars::Entities::Permit.new(resource_attributes)
-      db[resource.id] = resource
+      db[resource.code] = resource
     end
 
     private
