@@ -1,4 +1,5 @@
 require 'zeitwerk'
+require 'active_support/core_ext/integer/time'
 
 class Boot
   AUTOLOAD_DIRS = [

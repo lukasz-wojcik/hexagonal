@@ -26,7 +26,7 @@ describe ParkingCars::Services::IssuePermit do
                                plate_number: 'DES 12345',
                                rate_name: 'Zone 1',
                                start_date: DateTime.now,
-                               end_date: DateTime.now + 70.minutes # add active support time manipulation
+                               end_date: DateTime.now + 70.minutes
                              )
   end
 end
