@@ -36,3 +36,4 @@ ApplicationConfig.register_obtaining_rates_repository(repository: Repositories::
 ApplicationConfig.register_obtaining_rates_repository(key: 'in_memory', repository: Repositories::InMemoryRates.new)
 
 ApplicationConfig.register_permits_repository(key: 'in_memory', repository: Repositories::InMemoryDb.new)
+ApplicationConfig.register_payment_service(key: 'fake', service: Adapters::FakePaymentService.new)
