@@ -3,9 +3,17 @@ require_relative '../../spec_helper'
 describe ParkingCars::Services::IssuePermit do
 
   it 'issues permit' do
+    rates_repository = rates_repository_with_rates(
+        [
+          ParkingCars::Entities::Rate.new(name: 'Zone 1', min_minutes_allowed: 10, max_minutes_allowed: 180, cost_per_hour: 5),
+        ]
+      )
+    rates_service = ParkingCars::Services::ObtainingRates.new(repository: rates_repository)
+
     service = ParkingCars::Services::IssuePermit.new(
       repository: ApplicationConfig.permits_repository(key: 'in_memory'),
-      payment_service: ApplicationConfig.payment_service(key: 'in_memory')
+      payment_service: ApplicationConfig.payment_service(key: 'fake'),
+      rates_service: rates_service
     )
 
     permit_ticket = service.issue_permit(
@@ -28,5 +36,11 @@ describe ParkingCars::Services::IssuePermit do
                                start_date: DateTime.now,
                                end_date: DateTime.now + 70.minutes
                              )
+  end
+
+  def rates_repository_with_rates(rates)
+    ApplicationConfig.obtaining_rates_repository(key: 'in_memory').tap do |repository|
+      rates.each { |rate| repository.add_rate(rate) }
+    end
   end
 end
