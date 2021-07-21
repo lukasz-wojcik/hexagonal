@@ -10,6 +10,10 @@ module ParkingCars
         repository.get_all_rates
       end
 
+      def get_rate_by_name(rate_name)
+        repository.get_rate_by_name(rate_name)
+      end
+
       private
 
       attr_reader :repository

@@ -13,6 +13,12 @@ module Repositories
       rates
     end
 
+    def get_rate_by_name(rate_name)
+      rate = rates.detect { |rate| rate.name == rate_name }
+      raise "Rate not found: #{rate_name}" unless rate
+      rate
+    end
+
     private
 
     attr_accessor :rates

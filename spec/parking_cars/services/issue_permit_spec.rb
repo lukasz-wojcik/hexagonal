@@ -9,9 +9,10 @@ describe ParkingCars::Services::IssuePermit do
         ]
       )
     rates_service = ParkingCars::Services::ObtainingRates.new(repository: rates_repository)
+    permits_repository = ApplicationConfig.permits_repository(key: 'in_memory')
 
     service = ParkingCars::Services::IssuePermit.new(
-      repository: ApplicationConfig.permits_repository(key: 'in_memory'),
+      repository: permits_repository,
       payment_service: ApplicationConfig.payment_service(key: 'fake'),
       rates_service: rates_service
     )
@@ -36,6 +37,7 @@ describe ParkingCars::Services::IssuePermit do
                                start_date: DateTime.now,
                                end_date: DateTime.now + 70.minutes
                              )
+    expect(permits_repository.find(permit_ticket.code)).to be_present
   end
 
   def rates_repository_with_rates(rates)
