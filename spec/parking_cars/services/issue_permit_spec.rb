@@ -5,7 +5,7 @@ describe ParkingCars::Services::IssuePermit do
   it 'issues permit' do
     rates_repository = rates_repository_with_rates(
         [
-          ParkingCars::Entities::Rate.new(name: 'Zone 1', min_minutes_allowed: 10, max_minutes_allowed: 180, cost_per_hour: 5),
+          ParkingCars::Domain::Entities::Rate.new(name: 'Zone 1', min_minutes_allowed: 10, max_minutes_allowed: 180, cost_per_hour: 5),
         ]
       )
     rates_service = ParkingCars::Services::ObtainingRates.new(repository: rates_repository)

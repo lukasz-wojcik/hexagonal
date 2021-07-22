@@ -32,8 +32,10 @@ class ApplicationConfig
 end
 
 rates_file_db_path = File.expand_path(File.join(Dir.pwd, 'config/rates.yml'))
-ApplicationConfig.register_obtaining_rates_repository(repository: Repositories::FileDbRates.new(rates_file_db_path))
-ApplicationConfig.register_obtaining_rates_repository(key: 'in_memory', repository: Repositories::InMemoryRates.new)
+ApplicationConfig.register_obtaining_rates_repository(repository: ParkingCars::Adapters::Repositories::FileDbRates.new(rates_file_db_path))
+ApplicationConfig.register_obtaining_rates_repository(key: 'in_memory', repository: ParkingCars::Adapters::Repositories::InMemoryRates.new)
 
-ApplicationConfig.register_permits_repository(key: 'in_memory', repository: Repositories::InMemoryPermits.new)
-ApplicationConfig.register_payment_service(key: 'fake', service: Adapters::FakePaymentService.new)
+ApplicationConfig.register_permits_repository(key: 'in_memory', repository: ParkingCars::Adapters::Repositories::InMemoryPermits.new)
+# ApplicationConfig.register_permits_repository(repository: Repositories::Permit.new)
+
+ApplicationConfig.register_payment_service(key: 'fake', service: ParkingCars::Adapters::Payments::FakePaymentService.new)

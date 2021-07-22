@@ -1,7 +1,7 @@
 require 'tempfile'
-require_relative '../spec_helper'
+require_relative '../../../spec_helper'
 
-describe Repositories::FileDbRates do
+describe ParkingCars::Adapters::Repositories::FileDbRates do
   it 'loads rates rates from file' do
     db_file = create_rates_file_db(
       [
@@ -11,10 +11,10 @@ describe Repositories::FileDbRates do
 
       ]
     )
-    all_rates = Repositories::FileDbRates.new(db_file.path).get_all_rates
+    all_rates = described_class.new(db_file.path).get_all_rates
 
     expect(all_rates.size).to eq(3)
-    expect(all_rates).to all(be_a(ParkingCars::Entities::Rate))
+    expect(all_rates).to all(be_a(ParkingCars::Domain::Entities::Rate))
   end
 
   def create_rates_file_db(rates)

@@ -5,9 +5,9 @@ describe ParkingCars::Services::ObtainingRates do
   it 'returns all rate entities' do
     repository = repository_with_rates(
       [
-        ParkingCars::Entities::Rate.new(name: 'Zone 1', min_minutes_allowed: 10, max_minutes_allowed: 180, cost_per_hour: 5),
-        ParkingCars::Entities::Rate.new(name: 'Zone 2', min_minutes_allowed: 10, max_minutes_allowed: 270, cost_per_hour: 3),
-        ParkingCars::Entities::Rate.new(name: 'Zone 3', min_minutes_allowed: 10, max_minutes_allowed: 360, cost_per_hour: 1)
+        ParkingCars::Domain::Entities::Rate.new(name: 'Zone 1', min_minutes_allowed: 10, max_minutes_allowed: 180, cost_per_hour: 5),
+        ParkingCars::Domain::Entities::Rate.new(name: 'Zone 2', min_minutes_allowed: 10, max_minutes_allowed: 270, cost_per_hour: 3),
+        ParkingCars::Domain::Entities::Rate.new(name: 'Zone 3', min_minutes_allowed: 10, max_minutes_allowed: 360, cost_per_hour: 1)
       ]
     )
     service = ParkingCars::Services::ObtainingRates.new(repository: repository)
