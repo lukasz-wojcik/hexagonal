@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module ParkingCars
   module Services
     class ObtainingRates
-
       def initialize(repository: nil)
         @repository = repository || ApplicationConfig.obtaining_rates_repository
       end
@@ -20,4 +21,3 @@ module ParkingCars
     end
   end
 end
-

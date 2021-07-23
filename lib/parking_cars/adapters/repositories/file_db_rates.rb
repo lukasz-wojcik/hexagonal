@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'csv'
 
 module  ParkingCars
@@ -6,7 +8,6 @@ module  ParkingCars
       class FileDbRates
         def initialize(file_path)
           self.file_path = file_path
-
         end
 
         def get_all_rates
@@ -33,4 +34,3 @@ module  ParkingCars
     end
   end
 end
-

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'tempfile'
 require_relative '../../../spec_helper'
 
@@ -7,7 +9,7 @@ describe ParkingCars::Adapters::Repositories::FileDbRates do
       [
         ['Zone 1', '10', '180', '2'],
         ['Zone 2', '10', '270', '5'],
-        ['Zone 3', '10', '270', '5'],
+        ['Zone 3', '10', '270', '5']
 
       ]
     )
@@ -20,7 +22,7 @@ describe ParkingCars::Adapters::Repositories::FileDbRates do
   def create_rates_file_db(rates)
     Tempfile.new('rates_db').tap do |file|
       csv_rates = CSV.generate do |csv|
-        rates.each { |rate| csv << rate}
+        rates.each { |rate| csv << rate }
       end
       file.write(csv_rates)
       file.close

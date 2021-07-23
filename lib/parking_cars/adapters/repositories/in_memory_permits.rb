@@ -1,4 +1,6 @@
-module  ParkingCars
+# frozen_string_literal: true
+
+module ParkingCars
   module Adapters
     module Repositories
       class InMemoryPermits

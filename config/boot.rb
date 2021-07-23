@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'zeitwerk'
 require 'active_support/core_ext/integer/time'
 
 class Boot
   AUTOLOAD_DIRS = [
     File.absolute_path("#{__dir__}/../lib")
-  ]
+  ].freeze
 
   def self.call
     new.call

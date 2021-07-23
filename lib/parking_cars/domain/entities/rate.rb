@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ParkingCars
   module Domain
     module Entities
@@ -13,6 +15,7 @@ module ParkingCars
 
         def price_for_duration(duration)
           raise 'Invalid duration' unless allowed_duration?(duration)
+
           (duration.to_f / 60.0 * cost_per_hour)
         end
       end

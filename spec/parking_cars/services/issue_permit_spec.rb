@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require_relative '../../spec_helper'
 
 describe ParkingCars::Services::IssuePermit do
-
   it 'issues permit' do
     rates_repository = rates_repository_with_rates(
-        [
-          ParkingCars::Domain::Entities::Rate.new(name: 'Zone 1', min_minutes_allowed: 10, max_minutes_allowed: 180, cost_per_hour: 5),
-        ]
-      )
+      [
+        ParkingCars::Domain::Entities::Rate.new(name: 'Zone 1', min_minutes_allowed: 10, max_minutes_allowed: 180,
+                                                cost_per_hour: 5)
+      ]
+    )
     rates_service = ParkingCars::Services::ObtainingRates.new(repository: rates_repository)
     permits_repository = ApplicationConfig.permits_repository(key: 'in_memory')
 
@@ -31,12 +33,12 @@ describe ParkingCars::Services::IssuePermit do
     )
 
     expect(permit_ticket).to have_attributes(
-                               code: an_instance_of(String),
-                               plate_number: 'DES 12345',
-                               rate_name: 'Zone 1',
-                               start_date: DateTime.now,
-                               end_date: DateTime.now + 70.minutes
-                             )
+      code: an_instance_of(String),
+      plate_number: 'DES 12345',
+      rate_name: 'Zone 1',
+      start_date: DateTime.now,
+      end_date: DateTime.now + 70.minutes
+    )
     expect(permits_repository.find(permit_ticket.code)).to be_present
   end
 

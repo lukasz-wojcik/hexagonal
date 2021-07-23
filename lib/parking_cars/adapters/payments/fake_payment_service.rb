@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ParkingCars
   module Adapters
     module Payments
@@ -7,7 +9,6 @@ module ParkingCars
         def process_payment(amount:, payment_data:)
           Result.new(success?: true)
         end
-
       end
     end
   end
