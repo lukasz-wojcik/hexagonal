@@ -10,6 +10,7 @@ gem "dry-struct", "~> 1.4"
 gem "dry-container", "~> 0.8.0"
 
 gem "zeitwerk"
+gem "rubocop"
 
 group :development, :test do
   gem "pry"
