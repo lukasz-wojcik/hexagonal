@@ -7,9 +7,9 @@ module ParkingCars
         Result = Struct.new(:'success?', keyword_init: true)
 
         def process_payment(amount:, payment_data:)
-          raise('Invalid payment_data or amount') if amount.positive? && payment_data.present?
+          return Result.new(success?: true) if amount.positive? && payment_data.present?
 
-          Result.new(success?: true)
+          raise 'Invalid payment_data or amount'
         end
       end
     end
