@@ -10,8 +10,8 @@ module  ParkingCars
           self.file_path = file_path
         end
 
-        def get_all_rates
-          @rates ||= load_rates_file(file_path)
+        def all_rates
+          @all_rates ||= load_rates_file(file_path)
         end
 
         private

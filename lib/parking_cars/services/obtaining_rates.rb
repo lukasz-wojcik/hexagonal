@@ -7,12 +7,12 @@ module ParkingCars
         @repository = repository || ApplicationConfig.obtaining_rates_repository
       end
 
-      def get_all_rates
-        repository.get_all_rates
+      def all_rates
+        repository.all_rates
       end
 
-      def get_rate_by_name(rate_name)
-        repository.get_rate_by_name(rate_name)
+      def rate_by_name(rate_name)
+        repository.rate_by_name(rate_name)
       end
 
       private

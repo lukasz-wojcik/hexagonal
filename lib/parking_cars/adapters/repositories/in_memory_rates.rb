@@ -14,15 +14,15 @@ module ParkingCars
           rates << rate
         end
 
-        def get_all_rates
+        def all_rates
           rates
         end
 
-        def get_rate_by_name(rate_name)
-          rate = rates.detect { |rate| rate.name == rate_name }
-          raise "Rate not found: #{rate_name}" unless rate
+        def rate_by_name(rate_name)
+          found_rate = rates.detect { |rate| rate.name == rate_name }
+          raise "Rate not found: #{rate_name}" unless found_rate
 
-          rate
+          found_rate
         end
 
         def destroy_all

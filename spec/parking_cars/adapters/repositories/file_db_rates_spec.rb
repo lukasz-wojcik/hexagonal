@@ -13,7 +13,7 @@ describe ParkingCars::Adapters::Repositories::FileDbRates do
 
       ]
     )
-    all_rates = described_class.new(db_file.path).get_all_rates
+    all_rates = described_class.new(db_file.path).all_rates
 
     expect(all_rates.size).to eq(3)
     expect(all_rates).to all(be_a(ParkingCars::Domain::Entities::Rate))

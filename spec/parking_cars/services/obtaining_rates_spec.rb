@@ -15,7 +15,7 @@ describe ParkingCars::Services::ObtainingRates do
       ]
     )
     service = ParkingCars::Services::ObtainingRates.new(repository: repository)
-    rates = service.get_all_rates
+    rates = service.all_rates
 
     expect(rates.size).to eq(3)
   end

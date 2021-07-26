@@ -13,7 +13,7 @@ module ParkingCars
 
       def issue_permit(permit_request)
         rate_name = permit_request.fetch(:rate_name)
-        rate = rates_service.get_rate_by_name(rate_name)
+        rate = rates_service.rate_by_name(rate_name)
         duration = permit_request.fetch(:duration)
         raise "Cannot park in #{rate_name} for so long" unless rate.allowed_duration?(duration)
 
