@@ -1,0 +1,12 @@
+production:
+  parking_cars:
+    rates_repository: 'file_db'
+    permits_repository: 'in_memory'
+development:
+  parking_cars:
+    rates_repository: 'file_db'
+    permits_repository: 'in_memory'
+test:
+  parking_cars:
+    rates_repository: 'in_memory'
+    permits_repository: 'in_memory'

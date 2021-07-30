@@ -43,7 +43,7 @@ describe ParkingCars::Services::IssuePermit do
   end
 
   def rates_repository_with_rates(rates)
-    ApplicationConfig.obtaining_rates_repository(key: 'in_memory').tap do |repository|
+    ParkingCars::Configuration.rates_repository.tap do |repository|
       rates.each { |rate| repository.add_rate(rate) }
     end
   end
