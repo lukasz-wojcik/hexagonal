@@ -5,8 +5,8 @@ module ParkingCars
     def issue_permit(permit_request)
       Services::IssuePermit.new(
         repository: repository,
-        rates_service: rates_facade,
-        payment_service: payments_facade
+        rates_facade: rates_facade,
+        payments_facade: payments_facade
       ).issue_permit(permit_request)
     end
 

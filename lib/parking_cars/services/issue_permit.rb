@@ -5,10 +5,10 @@ require 'securerandom'
 module ParkingCars
   module Services
     class IssuePermit
-      def initialize(rates_service:, repository:, payment_service:)
+      def initialize(rates_facade:, repository:, payments_facade:)
         self.repository = repository
-        self.payment_service = payment_service
-        self.rates_service = rates_service
+        self.payments_facade = payments_facade
+        self.rates_facade = rates_facade
       end
 
       def issue_permit(permit_request)
@@ -16,12 +16,12 @@ module ParkingCars
                                                                                 :duration,
                                                                                 :payment_data,
                                                                                 :plate_number).values
-        rate = rates_service.rate_by_name(rate_name)
+        rate = rates_facade.rate_by_name(rate_name)
         raise "Cannot park in #{rate_name} for so long" unless rate.allowed_duration?(duration)
 
-        payment_processing_result = collect_payment(duration, payment_data, rate)
+        payments_processing_result = collect_payment(duration, payment_data, rate)
 
-        return unless payment_processing_result.success?
+        return unless payments_processing_result.success?
 
         crate_permit_record(duration, plate_number, rate_name)
       end
@@ -29,7 +29,7 @@ module ParkingCars
       private
 
       def collect_payment(duration, payment_data, rate)
-        payment_service.process_payment(amount: rate.price_for_duration(duration), payment_data: payment_data)
+        payments_facade.process_payment(amount: rate.price_for_duration(duration), payment_data: payment_data)
       end
 
       def crate_permit_record(duration, plate_number, rate_name)
@@ -44,7 +44,7 @@ module ParkingCars
         )
       end
 
-      attr_accessor :repository, :payment_service, :rates_service
+      attr_accessor :repository, :payments_facade, :rates_facade
     end
   end
 end
