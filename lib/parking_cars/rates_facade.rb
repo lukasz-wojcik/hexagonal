@@ -10,6 +10,10 @@ module ParkingCars
       Services::ObtainingRates.new(repository: rates_repository).all_rates
     end
 
+    def rate_by_name(rate_name)
+      Services::ObtainingRates.new(repository: rates_repository).rate_by_name(rate_name)
+    end
+
     private
 
     attr_accessor :rates_repository

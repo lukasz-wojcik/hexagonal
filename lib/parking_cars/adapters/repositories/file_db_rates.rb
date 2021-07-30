@@ -14,6 +14,10 @@ module  ParkingCars
           @all_rates ||= load_rates_file(file_path)
         end
 
+        def rate_by_name(rate_name)
+          all_rates.detect { |rate| rate.name == rate_name }
+        end
+
         private
 
         attr_accessor :file_path

@@ -33,6 +33,10 @@ module ParkingCars
         ApplicationConfig.rates_repository(key: ADAPTERS_CONFIG.dig(RACK_ENV, NAMESPACE, 'rates_repository'))
       end
 
+      def permits_repository
+        ApplicationConfig.permits_repository(key: ADAPTERS_CONFIG.dig(RACK_ENV, NAMESPACE, 'permits_repository'))
+      end
+
       private
 
       def initialize_rates_facade
