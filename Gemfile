@@ -8,6 +8,7 @@ gem 'activesupport', '~> 6.1.4'
 
 gem 'dry-container', '~> 0.8.0'
 gem 'dry-struct', '~> 1.4'
+gem 'mongoid', '~> 7.3.1'
 
 gem 'rubocop'
 gem 'zeitwerk'

@@ -36,7 +36,8 @@ end
 ApplicationConfig.register_rates_repository(
   key: 'file_db',
   repository: ParkingCars::Adapters::Repositories::FileDbRates.new(
-    File.expand_path(File.join(Dir.pwd, 'config/rates.yml')))
+    File.expand_path(File.join(Dir.pwd, 'config/rates.yml'))
+  )
 )
 ApplicationConfig.register_rates_repository(
   key: 'in_memory',
@@ -48,8 +49,8 @@ ApplicationConfig.register_permits_repository(
   repository: ParkingCars::Adapters::Repositories::InMemoryPermits.new
 )
 ApplicationConfig.register_permits_repository(
-  key: 'mysql_db',
-  repository: ParkingCars::Adapters::Repositories::InMemoryPermits.new
+  key: 'mongo_db',
+  repository: ParkingCars::Adapters::Repositories::MongoDbPermits.new
 )
 
 ApplicationConfig.register_payment_service(

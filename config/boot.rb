@@ -2,6 +2,7 @@
 
 require 'zeitwerk'
 require 'active_support/core_ext/integer/time'
+require 'mongoid'
 
 class Boot
   AUTOLOAD_DIRS = [
@@ -14,6 +15,7 @@ class Boot
 
   def call
     load_zeitwerk
+    load_mongoid
   end
 
   private
@@ -24,6 +26,10 @@ class Boot
     loader.enable_reloading if development?
     loader.setup
     loader.eager_load
+  end
+
+  def load_mongoid
+    Mongoid.load!(File.join(File.dirname(__FILE__), 'mongoid.yml'))
   end
 
   def development?

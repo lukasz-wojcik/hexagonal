@@ -1,11 +1,11 @@
 production:
   parking_cars:
     rates_repository: 'file_db'
-    permits_repository: 'in_memory'
+    permits_repository: 'mongo_db'
 development:
   parking_cars:
     rates_repository: 'file_db'
-    permits_repository: 'in_memory'
+    permits_repository: 'mongo_db'
 test:
   parking_cars:
     rates_repository: 'in_memory'
