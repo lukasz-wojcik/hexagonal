@@ -3,8 +3,8 @@
 module ParkingCars
   module Services
     class ObtainingRates
-      def initialize(repository: nil)
-        @repository = repository || ApplicationConfig.obtaining_rates_repository
+      def initialize(repository:)
+        @repository = repository
       end
 
       def all_rates

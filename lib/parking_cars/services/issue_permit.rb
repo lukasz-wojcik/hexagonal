@@ -5,9 +5,9 @@ require 'securerandom'
 module ParkingCars
   module Services
     class IssuePermit
-      def initialize(rates_service:, repository: nil, payment_service: nil)
-        self.repository = repository || ApplicationConfig.permits_repository
-        self.payment_service = payment_service || ApplicationConfig.payment_service
+      def initialize(rates_service:, repository:, payment_service:)
+        self.repository = repository
+        self.payment_service = payment_service
         self.rates_service = rates_service
       end
 
