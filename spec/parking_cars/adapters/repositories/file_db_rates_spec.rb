@@ -19,7 +19,12 @@ describe ParkingCars::Adapters::Repositories::FileDbRates do
     expect(all_rates).to all(be_a(ParkingCars::Domain::Entities::Rate))
   end
 
-  def create_rates_file_db(rates)
+  it 'should raise an error when rate is not found' do
+    repository = described_class.new(create_rates_file_db.path)
+    expect { repository.rate_by_name('Zone 1')}.to raise_error
+  end
+  
+  def create_rates_file_db(rates = [])
     Tempfile.new('rates_db').tap do |file|
       csv_rates = CSV.generate do |csv|
         rates.each { |rate| csv << rate }
