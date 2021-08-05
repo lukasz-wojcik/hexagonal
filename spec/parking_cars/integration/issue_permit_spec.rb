@@ -4,8 +4,10 @@ require_relative '../../spec_helper'
 
 describe 'ParkingCars Issue Permit', integration: true do
   it 'issues permit' do
-    permits_repository = ApplicationConfig.permits_repository(key: 'mongo_db')
-    rates_facade = ParkingCars::RatesFacade.new(rates_repository: ApplicationConfig.rates_repository(key: 'file_db'))
+    permits_repository = ParkingCars::Configuration.permits_repository(adapter: 'mongo_db')
+    rates_facade = ParkingCars::RatesFacade.new(
+      rates_repository: ParkingCars::Configuration.rates_repository(adapter: 'file_db')
+    )
     facade = ParkingCars::PermitsFacade.new(
       repository: permits_repository,
       rates_facade: rates_facade,
