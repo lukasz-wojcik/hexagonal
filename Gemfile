@@ -17,3 +17,7 @@ group :development, :test do
   gem 'pry'
   gem 'rspec', '~> 3.10.0'
 end
+
+group :test do
+  gem 'database_cleaner-mongoid', '~> 2.0.1'
+end
