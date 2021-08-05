@@ -26,12 +26,12 @@ module ParkingCars
       end
 
       # adapter is needed to be able to explicitly fetch desired registered class
-      def rates_repository(adapter: nil)
-        resolve(registered_dependency_key(RATES_PREFIX, 'rates_repository', adapter: adapter))
+      def rates_repository
+        resolve(registered_dependency_key(RATES_PREFIX, 'rates_repository'))
       end
 
-      def permits_repository(adapter: nil)
-        resolve(registered_dependency_key(PERMITS_PREFIX, 'permits_repository', adapter: adapter))
+      def permits_repository
+        resolve(registered_dependency_key(PERMITS_PREFIX, 'permits_repository'))
       end
 
       def payment_service(key:)
@@ -71,8 +71,8 @@ module ParkingCars
         register("#{PAYMENT_SERVICE_PREFIX}#{key}", service)
       end
 
-      def registered_dependency_key(prefix, dependency_name, adapter: nil)
-        [prefix, adapter || ADAPTERS_CONFIG.dig(RACK_ENV, NAMESPACE, dependency_name)].join
+      def registered_dependency_key(prefix, dependency_name)
+        [prefix, ADAPTERS_CONFIG.dig(RACK_ENV, NAMESPACE, dependency_name)].join
       end
 
       def initialize_rates_facade
