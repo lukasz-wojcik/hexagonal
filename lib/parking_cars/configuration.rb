@@ -25,7 +25,6 @@ module ParkingCars
         register('permits_facade', initialize_permits_facade)
       end
 
-      # adapter is needed to be able to explicitly fetch desired registered class
       def rates_repository
         resolve(registered_dependency_key(RATES_PREFIX, 'rates_repository'))
       end
